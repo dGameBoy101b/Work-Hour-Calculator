@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Work Hour Calculator</title>
+		<meta charset="UTF-8"/>
+		<meta name='author' content='dGameBoy101b'/>
+		<script src='jquery-3.6.0.slim.min.js'></script>
+		<script src='work hour calculator.js'></script>
+		<link rel='stylesheet' href='work hour calculator.css'/>
+	</head>
+	<body>
+		<form>
+			<h1>Expenses</h1>
+			<table>
+				<thead>
+					<tr>
+						<th>Description</th>
+						<th>Amount</th>
+						<th>Unit</th>
+						<th>Action</th>
+					</tr>
+					<template id='expense-template'><tr>
+						<td><input name='expense-description' type='text'/></td>
+						<td><input name='expense-amount' type='number' value='0' min='0' required onchange='trimZeros(this)'/></td>
+						<td><select name='expense-unit' required>
+							<option vlaue=''>Not Selected</option>
+							<option value='day'>per Day</option>
+							<option value='week'>per Week</option>
+							<option value='fortnight'>per Fortnight</option>
+							<option value='month'>per Month</option>
+							<option value='year'>per Year</option>
+						</select></td>
+						<td><button type='button' onclick='removeExpense(this)'>Remove</button></td>
+					</tr></template>
+				</thead>
+				<tbody id='expense-body'/>
+				<tfoot>
+					<tr id='expense-add'>
+						<td></td>
+						<td></td>
+						<td></td>
+						<td><button type='button' onclick="addExpense()">Add Expense</button></td>
+					</tr>
+					<tr id='expense-total'>
+						<th>Total</th>
+						<td><input name='expense-total-amount' type='text' readonly value=''/></td>
+						<td><select name='expense-total-unit' required>
+							<option vlaue=''>Not Selected</option>
+							<option value='hour'>per Hour</option>
+							<option value='day'>per Day</option>
+							<option value='week'>per Week</option>
+							<option value='fortnight'>per Fortnight</option>
+							<option value='month'>per Month</option>
+							<option value='year'>per Year</option>
+						</select></td>
+						<td><button type='button' onclick='calcExpenseTotal()'>Calculate</button></td>
+					</tr>
+				</tfoot>
+			</table>
+		</form>
+	</body>
+</html>
