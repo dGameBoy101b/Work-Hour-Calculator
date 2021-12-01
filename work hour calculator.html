@@ -10,53 +10,106 @@
 	</head>
 	<body>
 		<form>
-			<h1>Expenses</h1>
-			<table>
-				<thead>
-					<tr>
-						<th>Description</th>
-						<th>Amount</th>
-						<th>Unit</th>
-						<th>Action</th>
-					</tr>
-					<template id='expense-template'><tr>
-						<td><input name='expense-description' type='text'/></td>
-						<td><input name='expense-amount' type='number' value='0' min='0' required onchange='trimZeros(this)'/></td>
-						<td><select name='expense-unit' required>
-							<option vlaue=''>Not Selected</option>
-							<option value='day'>per Day</option>
-							<option value='week'>per Week</option>
-							<option value='fortnight'>per Fortnight</option>
-							<option value='month'>per Month</option>
-							<option value='year'>per Year</option>
-						</select></td>
-						<td><button type='button' onclick='removeExpense(this)'>Remove</button></td>
-					</tr></template>
-				</thead>
-				<tbody id='expense-body'/>
-				<tfoot>
-					<tr id='expense-add'>
-						<td></td>
-						<td></td>
-						<td></td>
-						<td><button type='button' onclick="addExpense()">Add Expense</button></td>
-					</tr>
-					<tr id='expense-total'>
-						<th>Total</th>
-						<td><input name='expense-total-amount' type='text' readonly value=''/></td>
-						<td><select name='expense-total-unit' required>
-							<option vlaue=''>Not Selected</option>
-							<option value='hour'>per Hour</option>
-							<option value='day'>per Day</option>
-							<option value='week'>per Week</option>
-							<option value='fortnight'>per Fortnight</option>
-							<option value='month'>per Month</option>
-							<option value='year'>per Year</option>
-						</select></td>
-						<td><button type='button' onclick='calcExpenseTotal()'>Calculate</button></td>
-					</tr>
-				</tfoot>
-			</table>
+			<div title='Expenses are continuous costs that you pay on a regular basis'>
+				<h1>Expenses</h1>
+				<table>
+					<thead>
+						<tr>
+							<th>Description</th>
+							<th>Amount</th>
+							<th>Frequency</th>
+							<th>Action</th>
+						</tr>
+						<template id='expense.template'><tr>
+							<td><input name='expense.description' type='text'/></td>
+							<td><input name='expense.amount' type='number' value='0' min='0' required onchange='trimZeros(this)'/></td>
+							<td><select name='expense.frequency' required>
+								<option vlaue=''>Not Selected</option>
+								<option value='hour'>per Hour</option>
+								<option value='day'>per Day</option>
+								<option value='week'>per Week</option>
+								<option value='fortnight'>per Fortnight</option>
+								<option value='month'>per Month</option>
+								<option value='year'>per Year</option>
+							</select></td>
+							<td><button type='button' onclick='removeRow(this)'>Remove</button></td>
+						</tr></template>
+					</thead>
+					<tbody/>
+					<tfoot>
+						<tr>
+							<td></td>
+							<td></td>
+							<td></td>
+							<td><button type='button' onclick="addRow(this)">Add</button></td>
+						</tr>
+						<tr>
+							<th>Total</th>
+							<td><input name='expense.total-amount' type='text' readonly value=''/></td>
+							<td><select name='expense.total-frequency' required>
+								<option vlaue=''>Not Selected</option>
+								<option value='hour'>per Hour</option>
+								<option value='day'>per Day</option>
+								<option value='week'>per Week</option>
+								<option value='fortnight'>per Fortnight</option>
+								<option value='month'>per Month</option>
+								<option value='year'>per Year</option>
+							</select></td>
+							<td><button type='button' onclick='calcPerTimeTotal("expense")'>Calculate</button></td>
+						</tr>
+					</tfoot>
+				</table>
+			</div>
+			<div title='Passive Incomes are influxes you get on a regular basis with little daily effort'>
+				<h1>Passive Incomes</h1>
+				<table>
+					<thead>
+						<tr>
+							<th>Description</th>
+							<th>Amount</th>
+							<th>Frequncy</th>
+							<th>Action</th>
+						</tr>
+						<template><tr>
+							<td><input type='text' name='passive-income.description'/></td>
+							<td><input type='number' name='passive-income.amount' required value='0' onchange='trimZeros(this)'/></td>
+							<td><select name='passive-income.frequency' required value=''>
+								<option vlaue=''>Not Selected</option>
+								<option value='hour'>per Hour</option>
+								<option value='day'>per Day</option>
+								<option value='week'>per Week</option>
+								<option value='fortnight'>per Fortnight</option>
+								<option value='month'>per Month</option>
+								<option value='year'>per Year</option>
+							</select></td>
+							<td><button type='button' onclick='removeRow(this)'>Remove</button></td>
+						</tr></template>
+					</thead>
+					<tbody/>
+					<tfoot>
+						<tr>
+							<td></td>
+							<td></td>
+							<td></td>
+							<td><button type='button' onclick='addRow(this)'>Add</button></td>
+						</tr>
+						<tr>
+							<th>Total</th>
+							<td><input type='text' readonly name='passive-income.total-amount'/></td>
+							<td><select name='passive-income.total-frequency'>
+								<option vlaue=''>Not Selected</option>
+								<option value='hour'>per Hour</option>
+								<option value='day'>per Day</option>
+								<option value='week'>per Week</option>
+								<option value='fortnight'>per Fortnight</option>
+								<option value='month'>per Month</option>
+								<option value='year'>per Year</option>
+							</select></td>
+							<td><button type='button' onclick='calcPerTimeTotal("passive-income")'>Calculate</button></td>
+						</tr>
+					</tfoot>
+				</table>
+			</div>
 		</form>
 	</body>
 </html>
