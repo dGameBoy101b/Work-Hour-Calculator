@@ -5,6 +5,7 @@
 		<meta charset="UTF-8"/>
 		<meta name='author' content='dGameBoy101b'/>
 		<script src='jquery-3.6.0.slim.min.js'></script>
+		<script src='time_unit.js'></script>
 		<script src='work hour calculator.js'></script>
 		<link rel='stylesheet' href='work hour calculator.css'/>
 	</head>
@@ -24,7 +25,7 @@
 							<td><input name='expense.description' type='text'/></td>
 							<td><input name='expense.amount' type='number' value='0' min='0' required onchange='trimZeros(this)'/></td>
 							<td><select name='expense.frequency' required>
-								<option vlaue=''>Not Selected</option>
+								<option vlaue='' selected>Not Selected</option>
 								<option value='hour'>per Hour</option>
 								<option value='day'>per Day</option>
 								<option value='week'>per Week</option>
@@ -35,7 +36,8 @@
 							<td><button type='button' onclick='removeRow(this)'>Remove</button></td>
 						</tr></template>
 					</thead>
-					<tbody/>
+					<tbody>
+					</tbody>
 					<tfoot>
 						<tr>
 							<td></td>
@@ -47,7 +49,7 @@
 							<th>Total</th>
 							<td><input name='expense.total-amount' type='text' readonly value=''/></td>
 							<td><select name='expense.total-frequency' required>
-								<option vlaue=''>Not Selected</option>
+								<option vlaue='' selected>Not Selected</option>
 								<option value='hour'>per Hour</option>
 								<option value='day'>per Day</option>
 								<option value='week'>per Week</option>
@@ -55,7 +57,7 @@
 								<option value='month'>per Month</option>
 								<option value='year'>per Year</option>
 							</select></td>
-							<td><button type='button' onclick='calcPerTimeTotal("expense")'>Calculate</button></td>
+							<td><button type='button' onclick='calcPerTimeTotalInSection("expense")'>Calculate</button></td>
 						</tr>
 					</tfoot>
 				</table>
@@ -72,9 +74,9 @@
 						</tr>
 						<template><tr>
 							<td><input type='text' name='passive-income.description'/></td>
-							<td><input type='number' name='passive-income.amount' required value='0' onchange='trimZeros(this)'/></td>
+							<td><input type='number' name='passive-income.amount' required value='0' min='0' onchange='trimZeros(this)'/></td>
 							<td><select name='passive-income.frequency' required value=''>
-								<option vlaue=''>Not Selected</option>
+								<option vlaue='' selected>Not Selected</option>
 								<option value='hour'>per Hour</option>
 								<option value='day'>per Day</option>
 								<option value='week'>per Week</option>
@@ -85,7 +87,8 @@
 							<td><button type='button' onclick='removeRow(this)'>Remove</button></td>
 						</tr></template>
 					</thead>
-					<tbody/>
+					<tbody>
+					</tbody>
 					<tfoot>
 						<tr>
 							<td></td>
@@ -96,8 +99,8 @@
 						<tr>
 							<th>Total</th>
 							<td><input type='text' readonly name='passive-income.total-amount'/></td>
-							<td><select name='passive-income.total-frequency'>
-								<option vlaue=''>Not Selected</option>
+							<td><select name='passive-income.total-frequency' required>
+								<option vlaue='' selected>Not Selected</option>
 								<option value='hour'>per Hour</option>
 								<option value='day'>per Day</option>
 								<option value='week'>per Week</option>
@@ -105,7 +108,62 @@
 								<option value='month'>per Month</option>
 								<option value='year'>per Year</option>
 							</select></td>
-							<td><button type='button' onclick='calcPerTimeTotal("passive-income")'>Calculate</button></td>
+							<td><button type='button' onclick='calcPerTimeTotalInSection("passive-income")'>Calculate</button></td>
+						</tr>
+					</tfoot>
+				</table>
+			</div>
+			<div title='Incomes are influxes you get through great daily effort and work'>
+				<h1>Income</h1>
+				<table>
+					<thead>
+						<tr>
+							<th>Description</th>
+							<th>Amount</th>
+							<th>Frequency</th>
+							<th>Ratio</th>
+							<th>Action</th>
+						</tr>
+						<template><tr>
+							<td><input type='text' name='income.description'/></td>
+							<td><input type='number' name='income.amount' required min='0' value='0' onchange='trimZeros(this)'/></td>
+							<td><select name='income.frequency' required>
+								<option vlaue='' selected>Not Selected</option>
+								<option value='hour'>per Hour</option>
+								<option value='day'>per Day</option>
+								<option value='week'>per Week</option>
+								<option value='fortnight'>per Fortnight</option>
+								<option value='month'>per Month</option>
+								<option value='year'>per Year</option>
+							</select></td>
+							<td><input type='number' name='income.weight' required min='0' value='0' onchange='trimZeros(this)'/></td>
+							<td><button type='button' onclick='removeRow(this)'>Remove</button></td>
+						</tr></template>
+					</thead>
+					<tbody>
+					</tbody>
+					<tfoot>
+						<tr>
+							<td></td>
+							<td></td>
+							<td></td>
+							<td></td>
+							<td><button type='button' onclick='addRow(this)'>Add</button></td>
+						</tr>
+						<tr>
+							<th>Average</th>
+							<td><input type='text' name='income.average-amount' readonly/></td>
+							<td><select name='income.average-frequency' required>
+								<option vlaue='' selected>Not Selected</option>
+								<option value='hour'>per Hour</option>
+								<option value='day'>per Day</option>
+								<option value='week'>per Week</option>
+								<option value='fortnight'>per Fortnight</option>
+								<option value='month'>per Month</option>
+								<option value='year'>per Year</option>
+							</select></td>
+							<td></td>
+							<td><button type='button' onclick='calcPerTimeAverageInSection("income")'>Calculate</button></td>
 						</tr>
 					</tfoot>
 				</table>
