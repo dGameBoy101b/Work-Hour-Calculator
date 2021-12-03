@@ -11,8 +11,7 @@ class TimeUnit
 	static YEAR = new TimeUnit('year');
 	/** 
 	 * Construct new TimeUnit with the given string value
-	 * @hideconstructor
-	 * @param {String} val The string value of the new TimeUnit
+	 * @param {string} val The string value of the new TimeUnit
 	 */
 	constructor(val)
 	{
@@ -29,7 +28,7 @@ class TimeUnit
 	 */
 	toString()
 	{
-		return 'TimeUnit.' + this.value.toUpper();
+		return 'TimeUnit.' + this.value.toUpperCase();
 	}
 	/** 
 	 * Return the conversion factor for converting from this to the given TimeUnit
@@ -38,9 +37,9 @@ class TimeUnit
 	 */
 	convert(dst)
 	{
-		if (! dst instanceof TimeUnit)
+		if (!(dst instanceof TimeUnit))
 		{
-			dst = TimeUnit(dst);
+			dst = new TimeUnit(dst);
 		}
 		if (this.value == dst.value)
 		{
